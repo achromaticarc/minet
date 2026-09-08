@@ -207,7 +207,7 @@ def attempt_to_catch(catch, exc, item, index=None) -> bool:
     return False
 
 
-class LoadingBar(object):
+class LoadingBar:
     def __init__(
         self,
         title: Optional[str] = None,
@@ -556,8 +556,8 @@ class LoadingBar(object):
         if fields:
             assert self.stats is not None
 
-            for field, count in fields.items():
-                self.stats[field]["count"] = count
+            for field, c in fields.items():
+                self.stats[field]["count"] = c
 
             self.__refresh_stats()
 

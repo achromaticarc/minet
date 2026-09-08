@@ -12,7 +12,7 @@ SUPPORT_TESTS = [
 ]
 
 
-class TestEncodings(object):
+class TestEncodings:
     def test_normalize_encoding(self):
         assert normalize_encoding("UTF-8") == "utf8"
         assert normalize_encoding("utf8") == "utf8"

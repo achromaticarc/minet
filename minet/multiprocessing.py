@@ -25,7 +25,7 @@ def half_cpus(override=None):
 
 
 # NOTE: this is a class and not a decorator so it can be pickled
-class WorkerWrapper(object):
+class WorkerWrapper:
     __slots__ = ("fn",)
 
     def __init__(self, fn):
@@ -38,7 +38,7 @@ class WorkerWrapper(object):
             sys.exit(1)
 
 
-class LazyPool(object):
+class LazyPool:
     """
     A multiprocessing.Pool shim that won't start subprocesses if the desired
     number of workers is only one.
@@ -55,7 +55,7 @@ class LazyPool(object):
 
         if self.actually_multiprocessed:
             self.inner_pool = multiprocessing.Pool(
-                processes, initializer=initializer, initargs=initargs or tuple()
+                processes, initializer=initializer, initargs=initargs or ()
             )
         else:
             if initializer is not None:

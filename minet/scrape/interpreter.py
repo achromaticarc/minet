@@ -67,7 +67,7 @@ def extract(element, extractor_name):
     raise TypeError('Unknown "%s" extractor' % extractor_name)
 
 
-class EvaluationScope(object):
+class EvaluationScope:
     def __setattr__(self, key, value):
         self.__dict__[key] = value
 
@@ -138,11 +138,14 @@ def eval_expression(
     if not allow_none and result is None:
         raise ScraperEvalNoneError(path=path, expression=expression)
 
-    if (expect is not None or check is not None) and result is not None:
-        if not (check(result) if check else isinstance(result, expect)):
-            raise ScraperEvalTypeError(
-                path=path, expression=expression, expected=expect, got=result
-            )
+    if (
+        (expect is not None or check is not None)
+        and result is not None
+        and not (check(result) if check else isinstance(result, expect))
+    ):
+        raise ScraperEvalTypeError(
+            path=path, expression=expression, expected=expect, got=result
+        )
 
     return result
 
@@ -166,9 +169,8 @@ def tabulate(element, headers_inference: Optional[str] = "th", headers=None, pat
         trs = body.select("tr:has(td)", recursive=False)
         ths = head.select("tr > th", recursive=False)
 
-        if headers is None:
-            if headers_inference == "th":
-                headers = [th.get_text() for th in ths]
+        if headers is None and headers_inference == "th":
+            headers = [th.get_text() for th in ths]
 
         if headers is not None:
             for tr in trs:

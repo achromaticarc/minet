@@ -20,7 +20,7 @@ def escape_string_as_literal(string):
     return quote + string.replace(quote, "\\" + quote) + quote
 
 
-class CompilerContext(object):
+class CompilerContext:
     def __init__(
         self,
         printer,
@@ -87,7 +87,7 @@ class CompilerContext(object):
             self.print("value_{parent} = %s" % expr, **kwargs)
 
 
-class FieldsNode(object):
+class FieldsNode:
     def __init__(self, definition):
         self.definition = definition
 

@@ -1,4 +1,38 @@
 exclude = ["./minet/types.py"]
+target-version = "py38"
 
 [lint]
-ignore = ["E741"]
+ignore = [
+    "B006",
+    "B009",
+    "B010",
+    "B026",
+    "E741",
+    "BLE001",
+    "FURB167",
+    "I001",
+    "FLY002",
+    "UP031",
+    "UP032",
+    "UP037",
+    "FA100",
+    "DTZ001",
+    "DTZ002",
+    "DTZ003",
+    "DTZ004",
+    "DTZ005",
+    "DTZ006",
+    "DTZ007",
+    "DTZ011",
+    "PLR2044",
+    "C401",
+    "C405",
+    "RUF012",
+    "RUF022",
+    "RUF023",
+    "PERF402",
+    "S102",
+    "SIM102",
+    "SIM115",
+    "PLW1510"
+]

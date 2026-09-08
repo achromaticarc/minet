@@ -249,7 +249,7 @@ def rate_limited_method(attr: str = "rate_limiter_state"):
             if not isinstance(
                 state, (RateLimiterState, ThreadsafeBurstyRateLimiterState)
             ):
-                raise ValueError
+                raise TypeError
 
             state.wait_if_needed()
             result = fn(self, *args, **kwargs)

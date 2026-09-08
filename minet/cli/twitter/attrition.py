@@ -108,10 +108,10 @@ def action(cli_args, client, enricher, loading_bar):
         try:
             result = client.call(["statuses", "lookup"], **kwargs)
 
-        except TwitterHTTPError as e:
+        except TwitterHTTPError:
             loading_bar.inc_stat("errors", style="error")
             loading_bar.advance(len(chunk))
-            raise e
+            raise
 
         for tw in result:
             available_tweets.add(tw["id_str"])
@@ -163,7 +163,7 @@ def action(cli_args, client, enricher, loading_bar):
                     current_tweet_status = "blocked_by_tweet_author"
 
                 else:
-                    raise e
+                    raise
 
             # This could happen in a case where you've been blocked by the tweet's author.
             # This is because the client uses 2 different methods to call the API, one linked to a user and one to an app.
@@ -260,7 +260,7 @@ def action(cli_args, client, enricher, loading_bar):
                                     )
 
                                 else:
-                                    raise e
+                                    raise
 
                             if result_retweet is not None:
                                 current_tweet_status = "unavailable_retweet"

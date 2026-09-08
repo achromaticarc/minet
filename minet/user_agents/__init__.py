@@ -4,7 +4,7 @@ import json
 import random
 from os.path import join, dirname
 
-import minet.user_agents.data as data
+from minet.user_agents import data
 from minet.exceptions import UserAgentsUpdateError
 
 

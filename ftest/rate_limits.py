@@ -57,7 +57,7 @@ from minet.rate_limiting import (
 # print_title("method decorator")
 
 
-# class Worker(object):
+# class Worker:
 #     def __init__(self):
 #         self.state = RateLimiterState(1)
 

@@ -211,7 +211,7 @@ def data_user_posts(
     return data
 
 
-class RedditScraper(object):
+class RedditScraper:
     def __init__(self):
         self.pool_manager = create_pool_manager()
 
@@ -239,12 +239,14 @@ class RedditScraper(object):
                 child = child.force_find("div")
                 child_comment = child.find_all(
                     "div",
-                    class_=lambda x: x
-                    and (
-                        "comment" in x
-                        or "deleted comment" in x
-                        or "morerecursion" in x
-                        or "morechildren" in x
+                    class_=lambda x: (
+                        x
+                        and (
+                            "comment" in x
+                            or "deleted comment" in x
+                            or "morerecursion" in x
+                            or "morechildren" in x
+                        )
                     ),
                     recursive=False,
                 )
@@ -332,11 +334,13 @@ class RedditScraper(object):
                     if all:
                         child_comment = child.find_all(
                             "div",
-                            class_=lambda x: x
-                            and (
-                                "comment" in x
-                                or "morerecursion" in x
-                                or "morechildren" in x
+                            class_=lambda x: (
+                                x
+                                and (
+                                    "comment" in x
+                                    or "morerecursion" in x
+                                    or "morechildren" in x
+                                )
                             ),
                             recursive=False,
                         )

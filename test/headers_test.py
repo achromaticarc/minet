@@ -21,7 +21,7 @@ HTTP_REFRESH_TESTS = [
 ]
 
 
-class TestHeaders(object):
+class TestHeaders:
     def test_parse_http_refresh(self):
         for header_value, result in HTTP_REFRESH_TESTS:
             assert parse_http_refresh(header_value) == result

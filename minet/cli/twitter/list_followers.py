@@ -52,7 +52,7 @@ def action(cli_args, client, enricher, loading_bar):
                     if e.e.code == 404:
                         enricher.writerow(row)
                     else:
-                        raise e
+                        raise
 
                     break
 

@@ -212,11 +212,8 @@ class BlueskyHTTPClient:
                 if post["uri"] in oldest_post_uris:
                     continue
 
-                try:
-                    # TODO : handle locale + extract_referenced_posts + collected_via
-                    yield normalize_post(post)
-                except Exception as e:
-                    raise e
+                # TODO : handle locale + extract_referenced_posts + collected_via
+                yield normalize_post(post)
 
                 # Taking the minimum createdAt time to avoid issues
                 # with posts not being perfectly sorted by createdAt (local_time parameter is createdAt in UTC)

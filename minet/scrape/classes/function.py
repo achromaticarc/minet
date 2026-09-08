@@ -35,9 +35,8 @@ def infer_fieldnames_from_function_return_type(fn: Callable) -> Optional[List[st
         args = get_args(return_type)
 
         # Optionals
-        if len(args) == 2:
-            if args[1] is type(None):
-                return_type = args[0]
+        if len(args) == 2 and args[1] is type(None):
+            return_type = args[0]
 
     if return_type in (str, int, float, bool, type(None)):
         return ["value"]

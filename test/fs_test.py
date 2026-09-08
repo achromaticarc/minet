@@ -18,7 +18,7 @@ from minet.fs import (
 from minet.exceptions import FilenameFormattingError
 
 
-class TestFS(object):
+class TestFS:
     def test_folder_strategy(self):
         # Don't test on windows yet
         if os.sep != "/":

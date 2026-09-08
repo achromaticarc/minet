@@ -7,7 +7,7 @@
 from typing import Optional, Any, List, Dict, Iterator
 
 import casanova
-import casanova.ndjson as ndjson
+from casanova import ndjson
 from dataclasses import dataclass
 from itertools import count
 from threading import Lock

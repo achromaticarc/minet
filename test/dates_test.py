@@ -8,7 +8,7 @@ from datetime import datetime
 from minet.dates import datetime_from_partial_iso_format
 
 
-class TestDates(object):
+class TestDates:
     def test_datetime_from_partial_iso_format(self):
         assert datetime_from_partial_iso_format("2008") == datetime(2008, 1, 1)
         assert datetime_from_partial_iso_format("2008-02") == datetime(2008, 2, 1)

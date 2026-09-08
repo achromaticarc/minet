@@ -329,7 +329,7 @@ def with_fatal_errors(mapping_or_hook):
                 if msg is not None:
                     raise FatalError(msg)
 
-                raise e
+                raise
 
         return wrapper
 

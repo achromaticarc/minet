@@ -37,9 +37,8 @@ def match_selector(selector, tag, attrs):
         if target.attribute not in attrs:
             return False
 
-        if target.pattern:
-            if not target.pattern.match(attrs[target.attribute]):
-                return False
+        if target.pattern and not target.pattern.match(attrs[target.attribute]):
+            return False
 
     return True
 

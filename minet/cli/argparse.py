@@ -428,14 +428,10 @@ class BooleanAction(Action):
             raise TypeError("expecting 2 or 4 flags")
 
     def __call__(self, parser, cli_args, values, option_string=None):
-        setattr(
-            cli_args,
-            self.dest,
-            False if option_string in self.false_options else True,
-        )
+        setattr(cli_args, self.dest, option_string not in self.false_options)
 
 
-class DummyCSVInput(object): ...
+class DummyCSVInput: ...
 
 
 class SingleColumnDummyCSVInput(DummyCSVInput):
@@ -491,7 +487,7 @@ class InputAction(Action):
         setattr(cli_args, self.dest, f)
 
 
-class OutputOpener(object):
+class OutputOpener:
     def __init__(self, path, resumer_class=None, resumer_kwargs={}):
         self.path = path
         self.resumer_class = resumer_class
@@ -555,7 +551,7 @@ def rc_key_to_env_var(key):
     return "MINET_%s" % "_".join(token.upper() for token in key)
 
 
-class WrappedConfigValue(object):
+class WrappedConfigValue:
     def __init__(self, flag, key, default, _type, required=False):
         self.flag = flag
         self.key = key

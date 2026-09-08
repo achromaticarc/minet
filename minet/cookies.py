@@ -33,7 +33,7 @@ def cookie_string_to_dict(cookie: str) -> Dict[str, str]:
     return cookie_dict
 
 
-class CookieResolver(object):
+class CookieResolver:
     def __init__(self, jar: CookieJar):
         self.jar = jar
 

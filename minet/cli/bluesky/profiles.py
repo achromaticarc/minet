@@ -2,8 +2,8 @@ from typing import Iterable, Iterator, Optional
 
 from casanova import Enricher
 
-import casanova.ndjson as ndjson
 import casanova
+from casanova import ndjson
 
 from ebbe import outer_zip
 
@@ -41,8 +41,8 @@ def action_normalize(cli_args, enricher: Enricher, loading_bar: LoadingBar):
                 except BlueskyHandleNotFound:
                     # in case the profile does not exist
                     yield None
-                except Exception as e:
-                    raise e
+                except Exception:
+                    raise
 
     def work(profiles: Iterable[str]) -> Iterator[BlueskyProfile]:
         dids = mixed_handles_and_dids_to_dids(profiles)
@@ -82,8 +82,8 @@ def action_raw(cli_args, loading_bar: LoadingBar):
                     yield client.resolve_handle(profile, True)
                 except KeyError:  # in case the profile does not exist
                     yield None
-                except Exception as e:
-                    raise e
+                except Exception:
+                    raise
 
     def work(dids: Iterable[str]) -> Iterator[str]:
         return client.profiles(dids, return_raw=True)

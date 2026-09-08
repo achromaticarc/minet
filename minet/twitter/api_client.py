@@ -31,13 +31,10 @@ def retryer_predicate(exc):
 
     # Retrying if we actually caught a json decoding error
     # TODO: simplify this if the `twitter` lib changes its error inheritance scheme
-    if "incomplete json data collected" in msg:
-        return True
-
-    return False
+    return "incomplete json data collected" in msg
 
 
-class TwitterAPIClient(object):
+class TwitterAPIClient:
     def __init__(
         self,
         access_token,

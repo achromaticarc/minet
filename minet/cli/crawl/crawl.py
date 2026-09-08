@@ -8,7 +8,7 @@ from typing import Optional, List, Callable, Any, Mapping, Union, cast
 
 import os
 import casanova
-import casanova.ndjson as ndjson
+from casanova import ndjson
 from inspect import isclass
 from os.path import join, dirname
 from ebbe.decorators import with_defer

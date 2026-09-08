@@ -17,7 +17,7 @@ DEFAULT_CRAWLER_CAST = {
 }
 
 
-class CSVRowCaster(object):
+class CSVRowCaster:
     def __init__(self, rules, headers) -> None:
         self.rules = rules
         self.headers = headers
@@ -43,7 +43,7 @@ def prepare_columns(cli_args, headers):
     columns = headers.select(["id", "parent", "degree"])
     columns += headers.select(cli_args.select) if cli_args.select else []
     columns += headers.select(cli_args.label) if cli_args.label else []
-    return dict((headers.nth(c), c) for c in columns)
+    return {headers.nth(c): c for c in columns}
 
 
 def prepare_attributes(fields, row, fieldnames, caster):

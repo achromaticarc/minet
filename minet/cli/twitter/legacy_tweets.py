@@ -41,7 +41,7 @@ def action(cli_args, client, enricher, loading_bar):
                     for row, tweet in chunk:
                         enricher.writerow(row)
                 else:
-                    raise e
+                    raise
 
                 continue
 

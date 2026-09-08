@@ -106,7 +106,7 @@ class FacebookComment(TabularRecord):
             for comment, replies in entries:
                 sorted_comments.append(comment)
 
-                walk((index[reply.id] for reply in replies))
+                walk(index[reply.id] for reply in replies)
 
         walk(filter(lambda entry: entry[0].depth == 0, index.values()))
 

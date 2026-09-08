@@ -14,6 +14,7 @@ from minet.bluesky import BlueskyHTTPClient
 
 post_reposted_by_headers = ["reposting_user_" + i for i in PARTIAL_PROFILE_FIELDS]
 
+
 @with_bluesky_fatal_errors
 @with_enricher_and_loading_bar(
     headers=post_reposted_by_headers,

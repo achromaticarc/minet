@@ -72,7 +72,7 @@ def get_channel_id(scraper: YouTubeScraper, channel_target: str) -> str:
     return channel_id
 
 
-class YouTubeAPIClient(object):
+class YouTubeAPIClient:
     def __init__(self, key, sleep: bool = True):
         if not isinstance(key, list):
             key = [key]

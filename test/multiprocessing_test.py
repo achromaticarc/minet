@@ -4,7 +4,7 @@
 from minet.multiprocessing import half_cpus
 
 
-class TestMultiprocessing(object):
+class TestMultiprocessing:
     def test_half_cpus(self):
         assert half_cpus(8) == 4
         assert half_cpus(7) == 4

@@ -12,7 +12,7 @@ from contextlib import contextmanager
 CrawlerStateListener = Callable[["CrawlerState"], None]
 
 
-class CrawlerState(object):
+class CrawlerState:
     jobs_done: int
     jobs_doing: int
     jobs_queued: int

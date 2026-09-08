@@ -13,7 +13,7 @@ from minet.mediacloud.topic import mediacloud_topic_stories
 from minet.mediacloud.types import MediacloudFeed, MediacloudMedia
 
 
-class MediacloudAPIClient(object):
+class MediacloudAPIClient:
     def __init__(self, token):
         self.token = token
         self.pool_manager = create_pool_manager(timeout=MEDIACLOUD_DEFAULT_TIMEOUT)

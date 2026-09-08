@@ -244,15 +244,14 @@ def stream_response_body(
         if cancel_event is not None and cancel_event.is_set():
             raise CancelledRequestError
 
-        if final_time is not None:
-            if timer() >= final_time:
-                raise FinalTimeoutError
+        if final_time is not None and timer() >= final_time:
+            raise FinalTimeoutError
 
     # This is the only place we know the body has been fully read
     return True
 
 
-class BufferedResponse(object):
+class BufferedResponse:
     """
     Class wrapping a urllib3.HTTPResponse and representing a response whose
     body has not been yet fully read.
@@ -682,7 +681,7 @@ def build_request_headers(
     return final_headers
 
 
-class Response(object):
+class Response:
     """
     Class representing a finalized HTTP response.
 
@@ -1283,20 +1282,16 @@ def create_request_retryer(
 
         msg = str(exc).lower()
 
-        if "errno -3" in msg or "temporary failure in name resolution" in msg:
-            return True
-
-        return False
+        return "errno -3" in msg or "temporary failure in name resolution" in msg
 
     retry_condition = retry_if_exception(default_retry_exception_predicate)
 
     if retry_on_statuses is not None:
 
         def status_predicate(exc: BaseException) -> bool:
-            if isinstance(exc, InvalidStatusError) and exc.status in retry_on_statuses:
-                return True
-
-            return False
+            return (
+                isinstance(exc, InvalidStatusError) and exc.status in retry_on_statuses
+            )
 
         retry_condition |= retry_if_exception(status_predicate)
 
@@ -1335,7 +1330,7 @@ def retrying_method(attr="retryer"):
             retryer = getattr(self, attr)
 
             if not isinstance(retryer, Retrying):
-                raise ValueError
+                raise TypeError
 
             return retryer(fn, self, *args, **kwargs)
 
@@ -1366,7 +1361,7 @@ def threadsafe_retrying_method(attr="retryers"):
             retryers = getattr(self, attr)
 
             if not isinstance(retryers, ThreadsafeRequestRetryers):
-                raise ValueError
+                raise TypeError
 
             retryer = retryers.acquire()
 

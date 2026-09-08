@@ -11,7 +11,7 @@ from minet.utils import (
 MIMETYPES = [("text/html", False), ("application/json", False), ("image/png", True)]
 
 
-class TestUtils(object):
+class TestUtils:
     def test_fix_ensure_ascii_json_string(self):
         assert (
             fix_ensure_ascii_json_string("Marie-H\\u00e9l\\u00e8ne") == "Marie-Hélène"

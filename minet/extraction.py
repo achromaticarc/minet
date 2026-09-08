@@ -52,8 +52,8 @@ class TrafilaturaResult(TabularRecord):
     content: Optional[str] = None
     comments: Optional[str] = None
     author: Optional[str] = None
-    categories: List[str] = field(default_factory=lambda: [])
-    tags: List[str] = field(default_factory=lambda: [])
+    categories: List[str] = field(default_factory=list)
+    tags: List[str] = field(default_factory=list)
     date: Optional[str] = None
     sitename: Optional[str] = None
     image: Optional[str] = None

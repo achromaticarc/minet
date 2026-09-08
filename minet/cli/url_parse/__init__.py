@@ -12,11 +12,7 @@ class UrlFragmentAction(Action):
         super().__init__(option_strings, dest, nargs=0, **kwargs)
 
     def __call__(self, parser, cli_args, values, option_string=None):
-        attr = (
-            False
-            if option_string.startswith("--no-") or option_string.startswith("--dont-")
-            else True
-        )
+        attr = not option_string.startswith(("--no-", "--dont-"))
 
         if attr and option_string.endswith("except-routing"):
             attr = "except-routing"

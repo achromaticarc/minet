@@ -1,8 +1,8 @@
 from typing import Iterable, Iterator
 from casanova import Enricher
 
-import casanova.ndjson as ndjson
 import casanova
+from casanova import ndjson
 
 from ebbe import outer_zip
 

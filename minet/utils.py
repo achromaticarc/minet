@@ -154,5 +154,4 @@ def iterate_over_sqlite_cursor(cursor: sqlite3.Cursor) -> Iterator[Any]:
         if not rows:
             return
 
-        for row in rows:
-            yield row
+        yield from rows

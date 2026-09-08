@@ -8,7 +8,7 @@ from minet.scrape.analysis import ScraperAnalysisOutputType
 AnyScrapableTarget = Union[str, WonderfulSoup, BeautifulSoup]
 
 
-class ScraperBase(object):
+class ScraperBase:
     fieldnames: Optional[List[str]]
     plural: bool
     tabular: bool

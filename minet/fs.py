@@ -74,7 +74,7 @@ def load_definition(f, *, defer=None, encoding: str = "utf-8") -> Dict:
     if path.endswith(".json"):
         definition = json.load(f)
 
-    elif path.endswith(".yml") or path.endswith(".yaml"):
+    elif path.endswith((".yml", ".yaml")):
         definition = yaml.safe_load(f)
 
     else:
@@ -83,7 +83,7 @@ def load_definition(f, *, defer=None, encoding: str = "utf-8") -> Dict:
     return definition
 
 
-class FolderStrategy(object):
+class FolderStrategy:
     def __call__(self):
         raise NotImplementedError
 
@@ -195,7 +195,7 @@ class FingerprintedHostnameFolderStrategy(FolderStrategy):
         return join(hostname, filename)
 
 
-class FilenameBuilder(object):
+class FilenameBuilder:
     folder_strategy: Optional[FolderStrategy]
 
     def __init__(
@@ -250,7 +250,7 @@ class FilenameBuilder(object):
         return filename
 
 
-class ThreadSafeFileWriter(object):
+class ThreadSafeFileWriter:
     def __init__(self, root_directory: Optional[str] = None, sqlar: bool = False):
         self.root_directory = root_directory or ""
         self.file_locks = NamedLocks()
@@ -316,8 +316,7 @@ class ThreadSafeFileWriter(object):
         else:
             open_fn = open
 
-        with self.file_locks[filename]:
-            with open_fn(filename, **open_kwargs) as f:
-                f.write(contents)  # type: ignore
+        with self.file_locks[filename], open_fn(filename, **open_kwargs) as f:
+            f.write(contents)  # type: ignore
 
         return filename

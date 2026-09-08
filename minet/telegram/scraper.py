@@ -331,7 +331,7 @@ def scrape_channel_messages(html, desc: bool = False):
     return next_after, results
 
 
-class TelegramScraper(object):
+class TelegramScraper:
     def __init__(self, throttle=TELEGRAM_DEFAULT_THROTTLE):
         self.pool_manager = create_pool_manager()
 
@@ -351,9 +351,7 @@ class TelegramScraper(object):
         if isinstance(parsed, ParsedTelegramGroup):
             raise TelegramInvalidTargetError
 
-        if isinstance(parsed, ParsedTelegramChannel) or isinstance(
-            parsed, ParsedTelegramMessage
-        ):
+        if isinstance(parsed, (ParsedTelegramChannel, ParsedTelegramMessage)):
             name = parsed.name
 
         url = convert_telegram_url_to_public(forge_telegram_channel_url(name))
@@ -368,9 +366,7 @@ class TelegramScraper(object):
         if isinstance(parsed, ParsedTelegramGroup):
             raise TelegramInvalidTargetError
 
-        if isinstance(parsed, ParsedTelegramChannel) or isinstance(
-            parsed, ParsedTelegramMessage
-        ):
+        if isinstance(parsed, (ParsedTelegramChannel, ParsedTelegramMessage)):
             name = parsed.name
 
         url = convert_telegram_url_to_public(
@@ -385,8 +381,7 @@ class TelegramScraper(object):
 
                 next_after, messages = scrape_channel_messages(html, desc=desc)
 
-                for message in messages:
-                    yield message
+                yield from messages
 
                 if next_after is None:
                     break

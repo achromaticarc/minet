@@ -55,7 +55,7 @@ def build_pageviews_url(
     )
 
 
-class WikimediaRestAPIClient(object):
+class WikimediaRestAPIClient:
     def pageviews(
         self,
         pages: Iterable[ItemType],

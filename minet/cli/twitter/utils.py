@@ -20,13 +20,19 @@ ITEMS_PER_PAGE = 1000
 
 
 def validate_query_boundaries(cli_args):
-    if cli_args.start_time is not None and cli_args.end_time is not None:
-        if cli_args.end_time < cli_args.start_time:
-            raise InvalidArgumentsError("--end-time should be after --start-time!")
+    if (
+        cli_args.start_time is not None
+        and cli_args.end_time is not None
+        and cli_args.end_time < cli_args.start_time
+    ):
+        raise InvalidArgumentsError("--end-time should be after --start-time!")
 
-    if cli_args.since_id and cli_args.until_id:
-        if cli_args.until_id < cli_args.since_id:
-            raise InvalidArgumentsError("--until-id should be greater than --since-id!")
+    if (
+        cli_args.since_id
+        and cli_args.until_id
+        and cli_args.until_id < cli_args.since_id
+    ):
+        raise InvalidArgumentsError("--until-id should be greater than --since-id!")
 
 
 def with_twitter_client(api_version=None):
@@ -48,7 +54,7 @@ def with_twitter_client(api_version=None):
                 api_version=api_version,
             )
 
-            return action(cli_args, *args, **{"client": client}, **kwargs)
+            return action(cli_args, *args, client=client, **kwargs)
 
         return wrapper
 

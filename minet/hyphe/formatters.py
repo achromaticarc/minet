@@ -32,7 +32,7 @@ def format_page_for_csv(webentity, page, expect_filename: bool = False, filename
         "1" if page["crawled"] else "0",
         page.get("encoding", ""),
         page.get("content_type", ""),
-        page["crawl_timestamp"] if "crawl_timestamp" in page else "",
+        page.get("crawl_timestamp", ""),
         datetime.fromtimestamp(int(page["crawl_timestamp"]) / 1000).isoformat(
             timespec="seconds"
         )

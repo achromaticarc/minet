@@ -488,7 +488,7 @@ def action(cli_args, enricher: casanova.IndexedEnricher, loading_bar: LoadingBar
                     error = convert_playwright_error(e)
 
                     if isinstance(error, BrowserYetUnimplementedError):
-                        raise e
+                        raise
 
                     return ScreenshotAddendum(
                         screenshot_error=serialize_error_as_slug(error)

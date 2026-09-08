@@ -6,7 +6,7 @@
 #
 from casanova import Enricher
 import casanova
-import casanova.ndjson as ndjson
+from casanova import ndjson
 
 from twitwi.constants import TWEET_FIELDS
 from twitwi import format_tweet_as_csv_row

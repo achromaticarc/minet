@@ -123,7 +123,7 @@ META_REFRESH = rb"""
 """
 
 
-class TestRegexScraper(object):
+class TestRegexScraper:
     def test_extract_encodings_from_xml(self):
         html = b"""
             <?xml version="1.0" encoding="UTF-16"?>

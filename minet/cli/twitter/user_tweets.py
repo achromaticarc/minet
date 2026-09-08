@@ -142,10 +142,9 @@ def action(cli_args, client, enricher, loading_bar):
                         )
                         addendum = format_tweet_as_csv_row(tweet)
 
-                        if cli_args.min_date:
-                            if int(addendum[1]) < cli_args.min_date:
-                                min_date_reached = True
-                                break
+                        if cli_args.min_date and int(addendum[1]) < cli_args.min_date:
+                            min_date_reached = True
+                            break
 
                         enricher.writerow(row, addendum)
                         loading_bar.nested_advance()

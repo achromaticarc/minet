@@ -32,7 +32,7 @@ from minet.scrape.exceptions import (
 ScraperAnalysisOutputType = Literal["scalar", "unknown", "collection", "dict", "list"]
 
 
-class ScraperAnalysis(object):
+class ScraperAnalysis:
     fieldnames: Optional[List[str]]
     plural: bool
     output_type: ScraperAnalysisOutputType

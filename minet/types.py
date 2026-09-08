@@ -33,7 +33,7 @@ RedirectionType = Literal[
 ]
 
 
-class Redirection(object):
+class Redirection:
     __slots__ = ("status", "type", "url")
 
     status: Optional[int]

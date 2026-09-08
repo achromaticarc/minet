@@ -58,7 +58,7 @@ def forge_commercials_raw_data(
     }
 
 
-class TiktokAPIScraper(object):
+class TiktokAPIScraper:
     def __init__(self, cookie=None):
         self.pool_manager = create_pool_manager(
             timeout=TIKTOK_PUBLIC_API_DEFAULT_TIMEOUT

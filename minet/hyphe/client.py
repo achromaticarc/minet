@@ -19,7 +19,7 @@ from minet.hyphe.exceptions import (
 )
 
 
-class HypheAPIClient(object):
+class HypheAPIClient:
     def __init__(self, endpoint):
         if not endpoint.endswith("/"):
             endpoint += "/"
@@ -56,7 +56,7 @@ class HypheAPIClient(object):
         return HypheAPIClientCorpus(self, corpus, password)
 
 
-class HypheAPIClientCorpus(object):
+class HypheAPIClientCorpus:
     def __init__(self, client, corpus, password=None):
         self.client = client
         self.corpus = corpus
@@ -137,10 +137,9 @@ class HypheAPIClientCorpus(object):
 
                 result = result["result"]
 
-                for webentity in result["webentities"]:
-                    yield webentity
+                yield from result["webentities"]
 
-                if "next_page" in result and result["next_page"]:
+                if result.get("next_page"):
                     token = result["token"]
                     next_page = result["next_page"]
                 else:
@@ -166,10 +165,9 @@ class HypheAPIClientCorpus(object):
 
             result = result["result"]
 
-            for page in result["pages"]:
-                yield page
+            yield from result["pages"]
 
-            if "token" in result and result["token"]:
+            if result.get("token"):
                 token = result["token"]
             else:
                 break

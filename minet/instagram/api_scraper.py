@@ -215,7 +215,7 @@ def ensure_magic_token(method):
     return wrapped
 
 
-class InstagramAPIScraper(object):
+class InstagramAPIScraper:
     def __init__(self, cookie="firefox"):
         self.pool_manager = create_pool_manager(
             timeout=INSTAGRAM_PUBLIC_API_DEFAULT_TIMEOUT

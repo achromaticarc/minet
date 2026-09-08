@@ -311,7 +311,7 @@ class ThreadsafeBrowser:
                 error = convert_playwright_error(e)
 
                 if isinstance(error, BrowserYetUnimplementedError):
-                    raise e
+                    raise
 
                 raise error
 

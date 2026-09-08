@@ -10,10 +10,10 @@ from minet.twitter.constants import APP_ONLY_ROUTES
 DEFAULT_MAX_ATTEMPTS = 5
 
 # Established from: https://developer.twitter.com/en/support/twitter-api/error-troubleshooting
-NO_RETRY_STATUSES = set([400, 401, 403, 404, 406, 410, 422])
+NO_RETRY_STATUSES = {400, 401, 403, 404, 406, 410, 422}
 
 
-class TwitterWrapper(object):
+class TwitterWrapper:
     def __init__(
         self,
         token,
@@ -147,7 +147,7 @@ class TwitterWrapper(object):
 
                 # Errors that should terminate immediately
                 elif e.e.code in NO_RETRY_STATUSES:
-                    raise e
+                    raise
 
                 # Different error
                 else:
